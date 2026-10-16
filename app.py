@@ -29,12 +29,10 @@ if st.sidebar.button("শর্টস তৈরি করুন 🚀"):
         with st.spinner("১/৫: ভিডিও ডাউনলোড হচ্ছে..."):
             video_path = output_dir / "video.mp4"
             
-            # yt-dlp এর জন্য ব্রাউজার সিমুলেশন সেটিংস
+            # yt-dlp এর জন্য মোবাইল ক্লায়েন্ট সিমুলেশন (ব্লক এড়ানোর জন্য)
             yt_dlp_cmd = [
                 "yt-dlp",
-                "--no-check-certificate",
-                "--prefer-insecure",
-                "--user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                "--extractor-args", "youtube:player_client=android",
                 "-f", "bv*[height<=1080]+ba/b[height<=1080]",
                 "-o", str(video_path),
                 video_url
